@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; script-src 'self'; img-src * data:;" />
+  <title>Dontuse Browser</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; font: 13px -apple-system, system-ui, sans-serif; background: #202124; color: #e8eaed; }
+    body { display: flex; flex-direction: column; }
+    #tabbar { display: flex; align-items: flex-end; gap: 2px; padding: 6px 8px 0 80px; height: 38px; -webkit-app-region: drag; background: #202124; }
+    .tab, #newtab { -webkit-app-region: no-drag; }
+    .tab { display: flex; align-items: center; gap: 6px; max-width: 200px; min-width: 80px; flex: 1; height: 32px; padding: 0 10px; border-radius: 8px 8px 0 0; background: #2d2e31; cursor: default; }
+    .tab.active { background: #3c4043; }
+    .tab span.title { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .tab span.close { opacity: .6; padding: 0 4px; border-radius: 4px; }
+    .tab span.close:hover { background: #5f6368; opacity: 1; }
+    #newtab { border: 0; background: none; color: #e8eaed; font-size: 18px; padding: 0 10px; height: 30px; cursor: pointer; }
+    #toolbar { display: flex; gap: 6px; padding: 6px 8px; background: #3c4043; }
+    #toolbar button { border: 0; background: none; color: #e8eaed; font-size: 16px; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; }
+    #toolbar button:hover { background: #5f6368; }
+    #url { flex: 1; height: 30px; border: 0; border-radius: 15px; padding: 0 14px; background: #202124; color: #e8eaed; font-size: 14px; outline: none; }
+    #url:focus { box-shadow: 0 0 0 2px #8ab4f8; }
+    #views { flex: 1; position: relative; }
+    webview { position: absolute; inset: 0; width: 100%; height: 100%; }
+    webview.hidden { visibility: hidden; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <div id="tabbar"><button id="newtab" title="New tab">+</button></div>
+  <div id="toolbar">
+    <button id="back" title="Back">‹</button>
+    <button id="forward" title="Forward">›</button>
+    <button id="reload" title="Reload">↻</button>
+    <input id="url" placeholder="Search or enter address" spellcheck="false" />
+    <button id="vpn" title="Extensions &amp; VPN">🧩</button>
+  </div>
+  <div id="views"></div>
+  <script src="renderer.js"></script>
+</body>
+</html>
